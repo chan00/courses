@@ -112,3 +112,13 @@ cameraDataSubset
 * The [XLConnect vignette](http://cran.r-project.org/web/packages/XLConnect/vignettes/XLConnect.pdf) is a good place to start for that package
 * In general it is advised to store your data in either a database
 or in comma separated files (.csv) or tab separated files (.tab/.txt) as they are easier to distribute.
+
+
+## Issue on Windows
+R xlsx package error
+cameraData <- read.xlsx("cameras.xlsx",sheetIndex=1)
+Error in .jcall("RJavaTools", "Ljava/lang/Object;", "invokeMethod", cl,  : 
+  java.util.zip.ZipException: invalid distance too far back
+  
+Solution: download.file(fileUrl, destfile='./data/sample.xlsx', mode='wb')
+          apparently the download mode needs to be set properly as write-binary (wb) since xlsx is basically a binary file (zip)
